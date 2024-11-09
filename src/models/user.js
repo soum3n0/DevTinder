@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
     firstName : {
@@ -16,16 +18,21 @@ const userSchema = new mongoose.Schema({
     },
     gender : {
         type: String,
-        validate: function (value){
-            if(!["M", "F", "O"].includes(value)){
-                throw new Error("Gender data is not validated");
-            }
+        // validate: function (value){
+        //     if(!["M", "F", "O"].includes(value)){
+        //         throw new Error("Gender data is not validated");
+        //     }
+        // }
+        enum : {
+            values : ["M", "F", "O"],
+            message : `{VALUE} is not a valid gender type`
         }
     },
     email : {
         type: String,
         lowercase: true,
-        unique: true,
+        // index: true,
+        unique: true,   // unique index - fast searching
         trim: true,
         required: true,
         validate(value){
@@ -49,6 +56,18 @@ const userSchema = new mongoose.Schema({
         type: [String],
     }
 }, {timestamps: true});
+
+userSchema.methods.getJWT = async function(){
+    const user = this;
+    const token = await jwt.sign({_id: user._id}, "abC@123", {expiresIn: "1d"});
+    return token;
+}
+
+userSchema.methods.validatePassword = async function(password) {
+    const passwordHash = this.password;
+    const isPasswordMatch = await bcrypt.compare(password, passwordHash);
+    return isPasswordMatch;
+}
 
 const User = mongoose.model("User", userSchema);
 
