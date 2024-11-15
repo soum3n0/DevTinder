@@ -1,22 +1,23 @@
-# AuthRoutes
+# AuthRouter
  - /signup
  - /login
  - /logout
 
-# ProfileRoutes
+# ProfileRouter
  - /profile/view
  - /profile/update/details
  - /profile/update/password
  - /profile/delete
 
 # RequestRouter
- - /request/like/:userId
- - /request/pass/:userId
- - /request/accepted
- - /request/rejected
+ - /request/send/like/:userId
+ - /request/send/pass/:userId
+ - /request/review/accepted/:requestId
+ - /request/review/rejected/:requestId
 
-# ConnectionRoutes
- - /connection/requests/sent
- - /connection/requests/received
- - /connection/all
+# UserRouter
+ - /user/requests/received
+ - /user/requests/sent
+ - /user/connections
+ - /user/feed
 
