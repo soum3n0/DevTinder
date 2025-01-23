@@ -4,12 +4,13 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const { corsOrigin, PORT } = require("./constraints");
 
 // middleware for all the route handler as path is not defined
 // convert to json
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin: "http://localhost:5173", credentials: true}));
+app.use(cors({origin: corsOrigin, credentials: true}));
 dotenv.config();
 
 const authRouter = require("./Routes/auth");
@@ -67,7 +68,7 @@ app.delete("/user", async (req, res) =>{
 
 connectDB().then(()=>{
     console.log("Database connected");
-    app.listen(3000, ()=>{
+    app.listen(PORT, ()=>{
         console.log("Connected to server");
     })
 }).catch((err)=>{

@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { defaultPhotoUrl } = require("../constraints");
 
 const userSchema = new mongoose.Schema(
     {
@@ -62,7 +63,7 @@ const userSchema = new mongoose.Schema(
         },
         photoUrl: {
             type: String,
-            default: "https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg"
+            default: defaultPhotoUrl
         }
     },
     { timestamps: true }

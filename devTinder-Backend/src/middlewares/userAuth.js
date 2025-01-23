@@ -7,7 +7,7 @@ const userAuth = async (req, res, next) => {
         if(!token){
             return res.status(401).json({error: "Please login"});
         }
-        const {_id} = await jwt.verify(token, "abC@123");
+        const {_id} = await jwt.verify(token, process.env.JWT_TOKEN_SECRET);
         const user = await User.findById(_id);
         if(!user){
             throw new Error("User not present");
