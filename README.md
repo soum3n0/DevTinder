@@ -8,11 +8,12 @@
      - connect to the instance using SSH client
      - chmod 400 "DevTinder-secret.pem"
      - ssh -i "DevTinder-secret.pem" ubuntu@ec2-13-232-68-170.ap-south-1.compute.amazonaws.com
+     - ssh -i "DevTinder-secret.pem" ubuntu@ec2-3-110-108-80.ap-south-1.compute.amazonaws.com
    * Deployment
         - install node.js on server (same version as local)
         - clone repository from github
-        - npm install for frontend and backend for install dependencies
         - Frontend
+            - npm install
             - npm run build => production build
             - nginx for host frontend
             - sudo apt update  => to update the system (optional) 
@@ -24,3 +25,19 @@
                 - instance => security => security group => inbound rules => edit inbound rules => add rule => port range : 80, set ip 0.0.0.0/0 for accessing anywhere from the internet. => save rules
             - Frontend deployed
 
+        - Backend
+            - npm install
+            - allow ip in database
+            - npm run start => production build
+            - npm install pm2 -g => keep server active 24/7
+            - pm2 start npm -- start => start the server
+            - pm2 logs => log the status
+            - pm2 list => list all processes run by pm2
+            - pm2 flush
+            - pm2 stop <processName>
+            - pm2 delete <processName>
+            - pm2 start npm --name "devTinder-backend" -- start  => custom name
+            - sudo nano /etc/nginx/sites-available/default
+            - proxy pass :port to /api/ using nginx
+            - sudo systemctl restart nginx
+            - modify frontend BASE_URL to "/api"
