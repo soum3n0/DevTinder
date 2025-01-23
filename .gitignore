@@ -1,1 +1,3 @@
 DevTinder-secret.pem
+.env
+node_modules
