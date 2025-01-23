@@ -58,7 +58,7 @@ const EditProfile = ({ user, setActiveEdit }) => {
             setLoader(true);
 
             const response = await axios.post(
-                `https://api.cloudinary.com/v1_1/dodro3hqi/image/upload`,
+                process.env.REACT_APP_CLOUDINARY_API,
                 formData
             );
 
