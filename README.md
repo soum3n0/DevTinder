@@ -38,6 +38,14 @@
             - pm2 delete <processName>
             - pm2 start npm --name "devTinder-backend" -- start  => custom name
             - sudo nano /etc/nginx/sites-available/default
+                - location /api/ {
+                    proxy_pass http://localhost:<your_backend_port>/;
+                    proxy_http_version 1.1;
+                    proxy_set_header Upgrade $http_upgrade;
+                    proxy_set_header Connection 'upgrade';
+                    proxy_set_header Host $host;
+                    proxy_cache_bypass $http_upgrade;
+                }
             - proxy pass :port to /api/ using nginx
             - sudo systemctl restart nginx
             - modify frontend BASE_URL to "/api"

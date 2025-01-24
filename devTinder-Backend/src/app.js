@@ -68,7 +68,7 @@ app.delete("/user", async (req, res) =>{
 
 connectDB().then(()=>{
     console.log("Database connected");
-    app.listen(PORT, ()=>{
+    app.listen(PORT, '0.0.0.0', ()=>{
         console.log("Connected to server");
     })
 }).catch((err)=>{
