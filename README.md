@@ -49,3 +49,5 @@
             - proxy pass :port to /api/ using nginx
             - sudo systemctl restart nginx
             - modify frontend BASE_URL to "/api"
+        - added .env file for both frontend and backend and added in .gitignore
+        - sudo nano .env => create .env in aws server => added .env manually to the aws server
