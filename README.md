@@ -31,7 +31,7 @@
             - npm run start => production build
             - npm install pm2 -g => keep server active 24/7
             - pm2 start npm -- start => start the server
-            - pm2 logs => log the status
+            - pm2 log => log the status
             - pm2 list => list all processes run by pm2
             - pm2 flush
             - pm2 stop <processName>

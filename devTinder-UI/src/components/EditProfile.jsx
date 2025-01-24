@@ -16,6 +16,7 @@ const EditProfile = ({ user, setActiveEdit }) => {
     const [error, setError] = useState("");
 
     const dispatch = useDispatch();
+    const cloudinaryUrl = import.meta.env.VITE_CLOUDINARY_API;
 
     const handleSaveProfile = async () => {
         try {
@@ -58,7 +59,7 @@ const EditProfile = ({ user, setActiveEdit }) => {
             setLoader(true);
 
             const response = await axios.post(
-                process.env.REACT_APP_CLOUDINARY_API,
+                cloudinaryUrl,
                 formData
             );
 
