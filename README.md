@@ -51,3 +51,11 @@
             - modify frontend BASE_URL to "/api"
         - added .env file for both frontend and backend and added in .gitignore
         - sudo nano .env => create .env in aws server => added .env manually to the aws server
+        - Backend deployed
+
+    
+# Sending custom email using amazon ses
+   - Setup IAM
+       - User => create user => user name => attach policies directly => AmazonSESFullAccess => create user
+   - SES
+       - 

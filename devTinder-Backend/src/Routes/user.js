@@ -4,7 +4,7 @@ const {userAuth} = require("../middlewares/userAuth");
 const ConnectionRequestModel = require("../models/connectionRequest");
 const User = require("../models/user");
 
-const filter = "firstName lastName age gender skills";
+const filter = "firstName lastName age gender skills photoUrl";
 
 userRouter.get("/user/requests/received", userAuth, async (req, res) => {
     try{
