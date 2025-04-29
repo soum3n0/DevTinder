@@ -3,6 +3,7 @@ import React from "react";
 import { BASE_URL } from "../utils/constraints";
 import { useDispatch } from "react-redux";
 import { removeRequest } from "../utils/requestSlice";
+import {Link} from "react-router-dom";
 
 const UserListCard = ({ user, isRequest, _id }) => {
     const {firstName, lastName, gender, age, skills, photoUrl } = user;
@@ -37,7 +38,7 @@ const UserListCard = ({ user, isRequest, _id }) => {
                     {skills.join(", ") || "No Skills added."}
                 </p>
             </div>
-            {isRequest && (
+            {isRequest ? (
                 <div className="flex flex-col gap-2">
                     <button
                         className="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg font-medium text-black"
@@ -52,6 +53,10 @@ const UserListCard = ({ user, isRequest, _id }) => {
                         Reject
                     </button>
                 </div>
+            ) : (
+                <Link to={`/chat/${user?._id}`}>
+                    <button className="btn btn-primary">Chat</button>
+                </Link>
             )}
         </div>
     );

@@ -58,4 +58,9 @@
    - Setup IAM
        - User => create user => user name => attach policies directly => AmazonSESFullAccess => create user
    - SES
+       - Configuaration identity
+       - Varify email address
+
+   - setup send email
+       - search amazon ses nodejs example
        - 

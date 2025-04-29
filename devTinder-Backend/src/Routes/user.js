@@ -101,4 +101,14 @@ userRouter.get("/user/feed", userAuth, async (req, res) => {
     }
 });
 
+userRouter.get("/fetch/user/:id", userAuth, async (req, res) =>{
+    try{
+        const id = req.params.id;
+        const userDetails = await User.findById(id);
+        res.json(userDetails);
+    }catch(err){
+        res.status(400).json({error : err.message});
+    }
+});
+
 module.exports = userRouter;

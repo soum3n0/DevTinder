@@ -5,6 +5,8 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const { corsOrigin, PORT } = require("./constraints");
+const http = require("http");
+const initializeSocket = require("./utils/Socket");
 
 // middleware for all the route handler as path is not defined
 // convert to json
@@ -17,11 +19,13 @@ const authRouter = require("./Routes/auth");
 const profileRouter = require("./Routes/profile");
 const requestRouter = require("./Routes/request");
 const userRouter = require("./Routes/user");
+const chatRouter = require("./Routes/chat");
 
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
+app.use("/", chatRouter);
 
 
 /*
@@ -66,9 +70,13 @@ app.delete("/user", async (req, res) =>{
 });
 */
 
+const server = http.createServer(app);
+
+initializeSocket(server);
+
 connectDB().then(()=>{
     console.log("Database connected");
-    app.listen(PORT, '0.0.0.0', ()=>{
+    server.listen(PORT, '0.0.0.0', ()=>{
         console.log("Connected to server");
     })
 }).catch((err)=>{

@@ -64,7 +64,8 @@ const EditProfile = ({ user, setActiveEdit }) => {
             );
 
             const photoUrl = response.data.secure_url;
-            setNewPhotoUrl(photoUrl);
+            const transformedUrl = photoUrl.replace('/upload/', '/upload/q_auto:eco/');
+            setNewPhotoUrl(transformedUrl);
             setLoader(false);
         } catch (err) {
             console.error("Error uploading image:", err);
@@ -124,7 +125,7 @@ const EditProfile = ({ user, setActiveEdit }) => {
                     className="grow bg-inherit text-white"
                     onChange={(e) => setNewGender(e.target.value)}
                 >
-                    <option disabled selected>
+                    <option disabled selected value="">
                         {newGender === "M" ? "Male" : newGender === 'F' ? "Female" : newGender === 'O' ? "Other" : "Gender not set"}
                     </option>
                     <option value="M">Male</option>
