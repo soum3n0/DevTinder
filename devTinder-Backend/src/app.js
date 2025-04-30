@@ -6,7 +6,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const { corsOrigin, PORT } = require("./constraints");
 const http = require("http");
-const initializeSocket = require("./utils/Socket");
+const initializeSocket = require("./utils/socket");
 
 // middleware for all the route handler as path is not defined
 // convert to json
