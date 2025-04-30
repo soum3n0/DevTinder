@@ -5,7 +5,6 @@ import EditProfile from "./EditProfile";
 const Profile = () => {
     const user = useSelector((store) => store.user);
     const [activeEdit, setActiveEdit] = useState(false);
-    
 
     if (!user) {
         return null;
@@ -24,23 +23,27 @@ const Profile = () => {
         updatedAt,
     } = user;
 
-    
-
     return (
-        <div className="grid grid-cols-3 my-20 mx-auto w-2/3">
+        <div className="grid md:grid-cols-3 my-20 mx-auto w-2/3 gap-4 justify-center">
             <div className="avatar flex flex-col">
-                <div className="w-48 rounded-full">
+                <div className="w-28 md:w-48 rounded-full">
                     <img src={photoUrl} />
                 </div>
             </div>
             <div className="col-span-2">
-                <h2 className="text-3xl font-bold">
+                <h2 className="text-xl md:text-3xl font-bold">
                     {firstName + " " + lastName}
                 </h2>
                 <div>{email}</div>
                 <div>
                     {age} -{" "}
-                    {gender === "M" ? "Male" : gender === 'F' ? "Female" : gender === 'O' ? "Other" : "Gender not set"}
+                    {gender === "M"
+                        ? "Male"
+                        : gender === "F"
+                        ? "Female"
+                        : gender === "O"
+                        ? "Other"
+                        : "Gender not set"}
                 </div>
                 <p className="font-semibold">
                     Skills :{" "}
@@ -51,15 +54,12 @@ const Profile = () => {
                     </span>
                 </p>
                 <p className="font-semibold">
-                    About :{" "}
-                    <span className="font-normal">
-                        {about}
-                    </span>
+                    About : <span className="font-normal">{about}</span>
                 </p>
                 <div>Profile created at : {createdAt.slice(0, 10)}</div>
                 <div>Last updated at : {updatedAt.slice(0, 10)}</div>
                 <button
-                    className="btn btn-primary mt-10"
+                    className="btn btn-primary btn-sm md:btn-md mt-4 md:mt-10"
                     onClick={() => setActiveEdit(true)}
                 >
                     Edit Profile

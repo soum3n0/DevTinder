@@ -28,8 +28,8 @@ const Requests = () => {
 
     return (
         <div className="flex flex-col items-center">
-            <h1 className="text-2xl font-bold my-4">Requests</h1>
-            <div className="w-1/2 overflow-y-auto">
+            <h1 className="text-lg md:text-2xl font-semibold md:font-bold my-4">Requests</h1>
+            <div className="w-11/12 md:w-1/2 overflow-y-auto">
                 {requests === null ? (
                     <UserListCardSkeleton />
                 ) : requests.length === 0 ? (

@@ -25,8 +25,8 @@ const Connections = () => {
 
     return (
         <div className="flex flex-col items-center">
-            <h1 className="text-2xl font-bold my-4">Connections</h1>
-            <div className="w-1/2 overflow-y-auto">
+            <h1 className="text-xl md:text-2xl font-bold my-4">Connections</h1>
+            <div className="w-11/12 md:w-1/2 overflow-y-auto">
                 {connections === null ? (
                     <UserListCardSkeleton />
                 ) : connections.length === 0 ? (

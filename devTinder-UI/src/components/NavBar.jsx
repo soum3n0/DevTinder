@@ -40,17 +40,16 @@ const NavBar = () => {
     }, [theme]);
 
     return (
-        <div className="navbar bg-base-200 py-2 px-10">
+        <div className="navbar bg-base-200 md:py-2 md:px-10">
             <div className="flex-1">
-                <Link to="/" className="btn btn-ghost text-xl">
+                <Link to="/" className="btn btn-ghost md:text-xl">
                     DevTinder
                 </Link>
             </div>
             <label className="flex cursor-pointer gap-2">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
+                    className="w-4 h-4 md:w-5 md:h-5"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -65,12 +64,11 @@ const NavBar = () => {
                     type="checkbox"
                     onChange={() => dispatch(toggleTheme())}
                     checked={theme === "dark"}
-                    className="toggle theme-controller"
+                    className="toggle theme-controller scale-75 md:scale-100"
                 />
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
+                    className="w-4 h-4 md:w-5 md:h-5"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -83,7 +81,9 @@ const NavBar = () => {
             </label>
             {user && (
                 <div className="flex-none gap-2 mx-5">
-                    <h2 className="mx-4">Hello, {user.firstName}</h2>
+                    <h2 className="mx-4 hidden md:block">
+                        Hello, {user.firstName}
+                    </h2>
                     <div className="dropdown dropdown-end">
                         <div
                             tabIndex={0}
@@ -101,6 +101,10 @@ const NavBar = () => {
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-52 p-2 shadow"
                         >
+                            <li>
+                                <div className="pl-4 py-2 font-semibold">{user.firstName + " " + user.lastName}</div>
+                                <hr className="border-t border-gray-700 w-full rounded-none" />
+                            </li>
                             <li>
                                 <Link to="/profile" className="justify-between">
                                     Profile

@@ -109,7 +109,7 @@ const Chat = () => {
     };
 
     return (
-        <div className="border border-gray-700 rounded-md w-full md:w-3/5 xl:1/2 h-[80vh] m-auto p-4 md:p-6 flex flex-col relative">
+        <div className="border border-gray-700 rounded-md w-full md:w-3/5 xl:1/2 h-[81vh] m-auto p-4 md:p-6 flex flex-col relative">
             {chatUser === null ? (
                 <ChatUserSkeleton />
             ) : (
@@ -122,7 +122,7 @@ const Chat = () => {
                             />
                         </div>
                     </div>
-                    <span className="text-lg font-medium">{`${chatUser?.firstName} ${chatUser?.lastName}`}</span>
+                    <span className="md:text-lg font-medium">{`${chatUser?.firstName} ${chatUser?.lastName}`}</span>
                 </div>
             )}
             <div className="border border-gray-800"></div>

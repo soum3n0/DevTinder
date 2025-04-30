@@ -65,8 +65,8 @@ const Auth = () => {
 
     return (
         <div className="w-screen flex justify-center my-10 mb-20">
-            <div className="w-1/4 flex flex-col gap-3 text-center my-">
-                <h1 className="font-bold text-3xl my-4">
+            <div className="md:w-1/4 flex flex-col gap-1 md:gap-3 text-center">
+                <h1 className="font-semibold md:font-bold text-xl md:text-3xl my-2 md:my-4">
                     {isLogin ? "Login" : "Signup"}
                 </h1>
                 {!isLogin && (

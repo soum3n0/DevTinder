@@ -58,24 +58,24 @@ const EditProfile = ({ user, setActiveEdit }) => {
             formData.append("upload_preset", "profile_pictures"); // Your preset name
             setLoader(true);
 
-            const response = await axios.post(
-                cloudinaryUrl,
-                formData
-            );
+            const response = await axios.post(cloudinaryUrl, formData);
 
             const photoUrl = response.data.secure_url;
-            const transformedUrl = photoUrl.replace('/upload/', '/upload/q_auto:eco/');
+            const transformedUrl = photoUrl.replace(
+                "/upload/",
+                "/upload/q_auto:eco/"
+            );
             setNewPhotoUrl(transformedUrl);
-            setLoader(false);
         } catch (err) {
             console.error("Error uploading image:", err);
             setError("Failed to upload image. Please try again.");
+        } finally {
             setLoader(false);
         }
     };
 
     return (
-        <div className="absolute flex flex-col gap-2 bg-base-300 p-8 rounded-xl left-1/2 -translate-x-1/2 top-16">
+        <div className="absolute  flex flex-col gap-2 bg-base-300 p-8 rounded-xl left-1/2 -translate-x-1/2 md:top-16 top-1/2 -translate-y-1/2 md:-translate-y-0">
             <label className="input input-bordered flex items-center gap-2">
                 First Name
                 <input
@@ -126,7 +126,13 @@ const EditProfile = ({ user, setActiveEdit }) => {
                     onChange={(e) => setNewGender(e.target.value)}
                 >
                     <option disabled selected value="">
-                        {newGender === "M" ? "Male" : newGender === 'F' ? "Female" : newGender === 'O' ? "Other" : "Gender not set"}
+                        {newGender === "M"
+                            ? "Male"
+                            : newGender === "F"
+                            ? "Female"
+                            : newGender === "O"
+                            ? "Other"
+                            : "Gender not set"}
                     </option>
                     <option value="M">Male</option>
                     <option value="F">Female</option>
