@@ -8,7 +8,7 @@ const EditProfile = ({ user, setActiveEdit }) => {
     const [newFirstName, setNewFirstName] = useState(user?.firstName || "");
     const [newLastName, setNewLastName] = useState(user?.lastName || "");
     const [newAge, setNewAge] = useState(user?.age || "");
-    const [newGender, setNewGender] = useState(user?.gender || "");
+    const [newGender, setNewGender] = useState(user?.gender || "N");
     const [newSkills, setNewSkills] = useState(user?.skills.join(", ") || "");
     const [newAbout, setNewAbout] = useState(user?.about || "");
     const [newPhotoUrl, setNewPhotoUrl] = useState(user?.photoUrl || "");
@@ -33,11 +33,13 @@ const EditProfile = ({ user, setActiveEdit }) => {
                 about: newAbout,
                 photoUrl: newPhotoUrl,
             };
+            
             const newUser = await axios.patch(
                 `${BASE_URL}/profile/update/details`,
                 updatedUser,
                 { withCredentials: true }
             );
+            
             dispatch(updateUser(newUser.data.user));
             setActiveEdit(false);
         } catch (err) {
@@ -169,6 +171,7 @@ const EditProfile = ({ user, setActiveEdit }) => {
                 <button
                     className="btn btn-primary flex-1"
                     onClick={handleSaveProfile}
+                    disabled={loader}
                 >
                     {loader ? (
                         <span className="loading loading-spinner loading-md"></span>

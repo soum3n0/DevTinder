@@ -108,6 +108,29 @@ const Chat = () => {
         }
     };
 
+    let lastMessageDate = null;
+    const formatDateLabel = (dateString) => {
+        const today = new Date();
+        const date = new Date(dateString);
+
+        const isSameDate = (d1, d2) =>
+            d1.getDate() === d2.getDate() &&
+            d1.getMonth() === d2.getMonth() &&
+            d1.getFullYear() === d2.getFullYear();
+
+        if (isSameDate(date, today)) return "Today";
+
+        const yesterday = new Date();
+        yesterday.setDate(today.getDate() - 1);
+        if (isSameDate(date, yesterday)) return "Yesterday";
+
+        return date.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+        });
+    };
+
     return (
         <div className="border border-gray-700 rounded-md w-full md:w-3/5 xl:1/2 h-[81vh] m-auto p-4 md:p-6 flex flex-col relative">
             {chatUser === null ? (
@@ -134,7 +157,8 @@ const Chat = () => {
                         Start a conversation
                     </div>
                 ) : (
-                    messages.map((mes, index) => {
+
+                    /* messages.map((mes, index) => {
                         const { senderId, text, createdAt } = mes;
                         return (
                             <div
@@ -148,6 +172,14 @@ const Chat = () => {
                                 <div className="chat-bubble">{text}</div>
                                 <div className="chat-footer">
                                     <time className="text-xs opacity-50">
+                                        {new Date(createdAt).toLocaleDateString(
+                                            "en-GB",
+                                            {
+                                                day: "2-digit",
+                                                month: "2-digit",
+                                                year: "numeric",
+                                            }
+                                        )}{" "}
                                         {new Date(createdAt).toLocaleTimeString(
                                             [],
                                             {
@@ -156,6 +188,46 @@ const Chat = () => {
                                             }
                                         )}
                                     </time>
+                                </div>
+                            </div>
+                        );
+                    }) */
+
+                    messages.map((mes, index) => {
+                        const { senderId, text, createdAt } = mes;
+                        const messageDate = new Date(createdAt);
+                        const dateLabel = formatDateLabel(createdAt);
+                        const showDateLabel =
+                            !lastMessageDate ||
+                            new Date(lastMessageDate).toDateString() !==
+                                messageDate.toDateString();
+                        lastMessageDate = messageDate;
+
+                        return (
+                            <div key={index}>
+                                {showDateLabel && (
+                                    <div className="text-center text-gray-400 my-4 text-sm">
+                                        <span className="border border-gray-400 bg-slate-900 bg-opacity-80 px-2 py-1 rounded-lg">{dateLabel}</span>
+                                    </div>
+                                )}
+                                <div
+                                    className={`chat ${
+                                        senderId === toUserId
+                                            ? "chat-start"
+                                            : "chat-end"
+                                    }`}
+                                >
+                                    <div className="chat-bubble">{text}</div>
+                                    <div className="chat-footer">
+                                        <time className="text-xs opacity-50">
+                                            {new Date(
+                                                createdAt
+                                            ).toLocaleTimeString([], {
+                                                hour: "2-digit",
+                                                minute: "2-digit",
+                                            })}
+                                        </time>
+                                    </div>
                                 </div>
                             </div>
                         );
