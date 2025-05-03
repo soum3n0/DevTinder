@@ -9,7 +9,7 @@ export const createSocketConnection = () => {
         });
     }else{
         return io(window.location.origin, {
-            path: "/socket.io",
+            path: "/api/socket.io",
             transports: ["websocket"],
             withCredentials: true,
         });

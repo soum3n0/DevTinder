@@ -27,7 +27,7 @@ const initializeSocket = (server) => {
     const io = socket(server, {
         cors: { origin: corsOrigin, credentials: true },
         transports: ["websocket"],
-        path: "/socket.io",
+        path: "/api/socket.io",
     });
 
     io.use(verifySocketAuth);
