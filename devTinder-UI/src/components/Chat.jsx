@@ -53,6 +53,7 @@ const Chat = () => {
     useEffect(() => {
         if (!user) return;
         socket.current = createSocketConnection();
+        console.log(socket.current);
         socket.current.on("connect", () => {
             socket.current.emit("joinChat", { toUserId });
         });

@@ -1,1 +1,1 @@
-export const BASE_URL = window.location.hostname === "localhost" ? "http://localhost:3000" : "/api";
+export const BASE_URL = window.location.hostname === "localhost" ? "http://localhost:3000" : "https://devtinder-backend-5xo0.onrender.com";

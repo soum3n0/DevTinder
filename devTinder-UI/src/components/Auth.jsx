@@ -59,7 +59,7 @@ const Auth = () => {
     useEffect(() => {
         if (user) {
             // Navigate to the appropriate route based on the action
-            navigate(isLogin ? "/" : "/profile");
+            navigate("/");
         }
     }, [user, isLogin, navigate]);
 

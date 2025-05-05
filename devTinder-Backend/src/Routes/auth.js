@@ -6,6 +6,8 @@ const validator = require("validator");
 const { validateSignUpData } = require("../utils/validate");
 const User = require("../models/user");
 
+const isProduction = process.env.NODE_ENV === "production";
+
 authRouter.post("/signup", async (req, res) => {
     // const userObj = {
     //     firstName : "Kousik",
@@ -33,6 +35,8 @@ authRouter.post("/signup", async (req, res) => {
         res.cookie("token", token, {
             expires: new Date(Date.now() + 7 * 24 * 3600000),
             httpOnly: true,
+            secure: isProduction,
+            sameSite: isProduction ? "None" : "Lax",
         });
         res.status(201).json({ message: "User added successfully", user });
     } catch (err) {
@@ -60,6 +64,8 @@ authRouter.post("/login", async (req, res) => {
             res.cookie("token", token, {
                 expires: new Date(Date.now() + 7 * 24 * 3600000),
                 httpOnly: true,
+                secure: isProduction,
+                sameSite: isProduction ? "None" : "Lax",
             });
             res.json({ message: "Login successful", user });
         } else {
