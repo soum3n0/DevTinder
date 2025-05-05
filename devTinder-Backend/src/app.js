@@ -12,8 +12,12 @@ const initializeSocket = require("./utils/socket");
 // convert to json
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin: corsOrigin, credentials: true}));
+app.use(cors({ origin: corsOrigin, credentials: true }));
 dotenv.config();
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 const authRouter = require("./Routes/auth");
 const profileRouter = require("./Routes/profile");
@@ -26,7 +30,6 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 app.use("/", chatRouter);
-
 
 /*
 // get all users
@@ -74,11 +77,13 @@ const server = http.createServer(app);
 
 initializeSocket(server);
 
-connectDB().then(()=>{
-    console.log("Database connected");
-    server.listen(PORT, '0.0.0.0', ()=>{
-        console.log("Connected to server");
+connectDB()
+    .then(() => {
+        console.log("Database connected");
+        server.listen(PORT, "0.0.0.0", () => {
+            console.log("Connected to server");
+        });
     })
-}).catch((err)=>{
-    console.error("Database is not connected");
-})
+    .catch((err) => {
+        console.error("Database is not connected");
+    });
