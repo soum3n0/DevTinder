@@ -124,10 +124,12 @@ const NavBar = () => {
                     </div>
                 </div>
             )}
+        
             {error && (
+                // Error toast
                 <div
                     role="alert"
-                    className="alert alert-error absolute w-1/5 top-10 left-1/2 -translate-x-1/2"
+                    className="alert alert-error flex justify-center absolute w-2/3 md:w-1/5 top-20 md:top-10 left-1/2 -translate-x-1/2"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -142,13 +144,14 @@ const NavBar = () => {
                             d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                     </svg>
-                    <span>Failed to logout user!</span>
+                    <span className="text-sm">Failed to logout user!</span>
                 </div>
             )}
             {success && (
+                // Success toast
                 <div
                     role="alert"
-                    className="alert alert-success absolute w-1/5 top-10 left-1/2 -translate-x-1/2"
+                    className="alert alert-success flex justify-center absolute w-2/3 md:w-1/5 top-20 md:top-10 left-1/2 -translate-x-1/2"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

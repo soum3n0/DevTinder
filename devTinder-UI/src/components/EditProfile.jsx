@@ -77,7 +77,7 @@ const EditProfile = ({ user, setActiveEdit }) => {
     };
 
     return (
-        <div className="absolute  flex flex-col gap-2 bg-base-300 p-8 rounded-xl left-1/2 -translate-x-1/2 md:top-16 top-1/2 -translate-y-1/2 md:-translate-y-0">
+        <div className="absolute  flex flex-col gap-2 bg-base-300 p-8 rounded-xl left-1/2 -translate-x-1/2 md:top-16 top-1/2 -translate-y-1/2 md:-translate-y-0 z-10">
             <label className="input input-bordered flex items-center gap-2">
                 First Name
                 <input
