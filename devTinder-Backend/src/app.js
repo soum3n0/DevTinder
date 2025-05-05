@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const { corsOrigin, PORT } = require("./constraints");
 const http = require("http");
 const initializeSocket = require("./utils/socket");
+const path = require("path");
 
 // middleware for all the route handler as path is not defined
 // convert to json
@@ -15,9 +16,6 @@ app.use(cookieParser());
 app.use(cors({ origin: corsOrigin, credentials: true }));
 dotenv.config();
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
-});
 
 const authRouter = require("./Routes/auth");
 const profileRouter = require("./Routes/profile");
@@ -30,6 +28,11 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 app.use("/", chatRouter);
+
+app.use(express.static(path.join(__dirname, "build")));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 /*
 // get all users
