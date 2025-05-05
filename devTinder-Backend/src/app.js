@@ -7,7 +7,6 @@ const dotenv = require("dotenv");
 const { corsOrigin, PORT } = require("./constraints");
 const http = require("http");
 const initializeSocket = require("./utils/socket");
-const path = require("path");
 
 // middleware for all the route handler as path is not defined
 // convert to json
@@ -28,11 +27,6 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 app.use("/", chatRouter);
-
-app.use(express.static(path.join(__dirname, "devTinder-UI", "dist")));
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "devTinder-UI", "dist", "index.html"));
-});
 
 /*
 // get all users
