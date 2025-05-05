@@ -8,8 +8,7 @@ export const createSocketConnection = () => {
             withCredentials: true,
         });
     }else{
-        return io(window.location.origin, {
-            path: "/api/socket.io",
+        return io("/", {
             transports: ["websocket"],
             withCredentials: true,
         });
