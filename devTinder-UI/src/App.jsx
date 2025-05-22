@@ -1,3 +1,4 @@
+import {lazy} from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Body from "./components/Body";
 import Profile from "./components/Profile";
@@ -7,7 +8,7 @@ import Feed from "./components/Feed";
 import Connections from "./components/Connections";
 import Requests from "./components/Requests";
 import Auth from "./components/Auth";
-import Chat from "./components/Chat";
+const Chat =  lazy(()=> import("./components/Chat"));
 
 function App() {
     return (
