@@ -24,7 +24,7 @@ const UserListCard = ({ user, isRequest, _id }) => {
         <div className="bg-base-300 rounded-xl px-8 md:px-12 py-2 md:py-4 font-light my-2 md:my-4 flex gap-4 md:gap-6 items-center">
             <div className="avatar">
                 <div className="w-16 md:w-20 rounded-full">
-                    <img src={photoUrl} />
+                    <img src={photoUrl} loading="lazy" />
                 </div>
             </div>
             <div key={_id} className="flex-grow">

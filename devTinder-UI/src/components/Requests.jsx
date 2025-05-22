@@ -33,7 +33,7 @@ const Requests = () => {
                 {requests === null ? (
                     <UserListCardSkeleton />
                 ) : requests.length === 0 ? (
-                    <h1 className="text-center">No Requests received.</h1>
+                    <h1 className="text-center my-20">No Requests received.</h1>
                 ) : (
                     requests.map((request) => {
                         return (

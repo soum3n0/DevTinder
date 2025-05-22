@@ -30,7 +30,7 @@ const Connections = () => {
                 {connections === null ? (
                     <UserListCardSkeleton />
                 ) : connections.length === 0 ? (
-                    <h1 className="text-center">No connections available.</h1>
+                    <h1 className="text-center my-20">No connections available.</h1>
                 ) : (
                     connections.map((connection) => {
                         return (

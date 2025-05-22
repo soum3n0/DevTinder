@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { removeFeed } from "../utils/feedSlice";
 import {BASE_URL} from "../utils/constraints";
 
-const UserCard = ({ data }) => {
+const UserCard = ({ data, onAction }) => {
     if(!data){
         return <h1 className="text-center my-20">No user available.</h1>
     }
@@ -43,13 +43,13 @@ const UserCard = ({ data }) => {
                 <div className="card-actions gap-8 md:gap-2 justify-center md:justify-end">
                     <button
                         className="btn"
-                        onClick={() => handleLikeOrPass("pass")}
+                        onClick={() => onAction("pass")}
                     >
                         Ignore
                     </button>
                     <button
                         className="btn btn-primary"
-                        onClick={() => handleLikeOrPass("like")}
+                        onClick={() => onAction("like")}
                     >
                         Connect
                     </button>
@@ -59,4 +59,4 @@ const UserCard = ({ data }) => {
     );
 };
 
-export default UserCard;
+export default React.memo(UserCard);
